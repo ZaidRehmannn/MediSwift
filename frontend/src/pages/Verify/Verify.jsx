@@ -26,7 +26,7 @@ const Verify = () => {
 
     return (
         <div className='verify min-h-[60vh] grid'>
-            <div className='spinner w-24 h-24 place-self-center border-[5px] border-solid border-[#bdbdbd] border-t-[#ff6347] rounded-[50%] animate-rotate'>
+            <div className='spinner w-24 h-24 place-self-center border-[5px] border-solid border-[#bdbdbd] border-t-green-700 rounded-[50%] animate-rotate'>
             </div>
         </div>
     )

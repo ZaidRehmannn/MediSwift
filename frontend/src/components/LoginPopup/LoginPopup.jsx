@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { assets } from '../../assets/frontend_assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
@@ -42,9 +42,16 @@ const LoginPopup = ({ setshowLogin }) => {
         }
     };
 
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, []);
+
     return (
-        <div className='login-popup absolute z-[1] w-full h-full bg-[#00000090] grid'>
-            <form className='login-popup-container place-self-center w-[max(23vw,330px)] text-[#808080] bg-white flex flex-col gap-[25px] py-[25px] px-[30px] rounded-lg text-sm animate-fadeIn0.5s' onSubmit={onlogin}>
+        <div className='login-popup fixed inset-0 z-[9999] bg-black bg-opacity-50 flex justify-center items-center' onClick={() => setshowLogin(false)}>
+            <form onClick={(e) => e.stopPropagation()} className='relative z-10 w-[max(23vw,330px)] text-[#808080] bg-white flex flex-col gap-[25px] py-[25px] px-[30px] rounded-lg text-sm animate-fadeIn0.5s' onSubmit={onlogin}>
                 <div className='login-popup-title flex justify-between items-center text-black text-xl font-semibold'>
                     <h2>{currState}</h2>
                     <img className='w-4 cursor-pointer' onClick={() => setshowLogin(false)} src={assets.cross_icon} alt="" />
@@ -71,10 +78,10 @@ const LoginPopup = ({ setshowLogin }) => {
                         </>
                     }
                 </div>
-                <button type='submit' className='border-none p-[10px] rounded-[4px] text-white bg-[#FF6347] text-sm cursor-pointer'>{currState === 'Sign Up' ? 'Create Account' : 'Login'}</button>
+                <button type='submit' className='border-none p-[10px] rounded-[4px] text-white bg-green-700 text-sm cursor-pointer'>{currState === 'Sign Up' ? 'Create Account' : 'Login'}</button>
                 {currState === 'Sign Up'
-                    ? <p>Already have an account? <span className='text-[#FF6347] font-semibold cursor-pointer' onClick={() => setcurrState('Login')}>Login here</span></p>
-                    : <p>Create a new account? <span className='text-[#FF6347] font-semibold cursor-pointer' onClick={() => setcurrState('Sign Up')}>Click here</span></p>
+                    ? <p>Already have an account? <span className='text-green-700 font-semibold cursor-pointer' onClick={() => setcurrState('Login')}>Login here</span></p>
+                    : <p>Create a new account? <span className='text-green-700 font-semibold cursor-pointer' onClick={() => setcurrState('Sign Up')}>Click here</span></p>
                 }
             </form>
         </div>

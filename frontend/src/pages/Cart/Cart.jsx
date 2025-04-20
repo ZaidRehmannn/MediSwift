@@ -3,7 +3,7 @@ import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
+  const { cartItems, medicine_list, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
   const navigate = useNavigate();
 
   return (
@@ -19,10 +19,10 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item, index) => {
+        {medicine_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
-              <div>
+              <div key={index}>
                 <div className='cart-items-title cart-items-item grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center text-center text-[max(1vw,12px)] my-[10px] mx-0 text-black'>
                   <img className='w-11 md:w-[50px] m-auto' src={item.image} alt="" />
                   <p>{item.name}</p>
@@ -56,14 +56,14 @@ const Cart = () => {
               <p>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</p>
             </div>
           </div>
-          <button className='border-none text-white bg-[#FF6347] w-[max(15vw,200px)] py-3 px-0 rounded cursor-pointer' onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button className='border-none text-white bg-green-700 w-[max(15vw,200px)] py-3 px-0 rounded cursor-pointer' onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
         <div className='cart-promocode flex-1 pr-0 lg:pr-0 md:pr-32'>
           <div>
             <p className='text-[#555]'>If you have a promo code, Enter it here</p>
             <div className='cart-promocode-input mt-[10px] flex justify-between items-center bg-[#eaeaea] rounded-[4px]'>
               <input type="text" placeholder='Promo Code' className='bg-transparent border-none outline-none pl-[10px]' />
-              <button className='w-20 md:w-24 lg:w-20 xl:w-24 py-3 px-[5px] bg-[#FF6347] border-none text-white rounded'>Apply</button>
+              <button className='w-20 md:w-24 lg:w-20 xl:w-24 py-3 px-[5px] bg-green-700 border-none text-white rounded'>Apply</button>
             </div>
           </div>
         </div>

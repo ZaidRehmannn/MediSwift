@@ -1,0 +1,23 @@
+.form-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .form-columns {
+        display: block;
+        column-count: 2;
+        column-gap: 40px;
+    }
+
+    .form-columns > * {
+        break-inside: avoid;
+        margin-bottom: 20px;
+        width: 100%;
+        display: block;
+    }
+}

@@ -3,11 +3,11 @@ import { assets } from '../../assets/frontend_assets/assets'
 
 const Footer = () => {
     return (
-        <div className='footer text-[#d9d9d9] bg-[#323232] flex flex-col items-center gap-5 py-5 px-[8vw] pt-20 mt-24' id='footer'>
+        <div className='footer text-[#d9d9d9] bg-[#057230] flex flex-col items-center gap-5 py-5 px-[8vw] pt-11 mt-24' id='footer'>
             <div className='footer-content flex flex-col w-full lg:grid grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-20'>
                 <div className='footer-content-left flex flex-col items-start gap-5'>
-                    <img src={assets.logo} alt="" />
-                    <p>Experience the joy of delicious meals delivered with love and care. At Tomato, we're passionate about bringing your favorite dishes to your doorstep. Follow us on social media and stay connected for exclusive deals, mouth-watering updates, and more!</p>
+                    <img src={assets.logo_inverted} alt="" className='w-44 h-40' />
+                    <p>MediSwift is your trusted partner in healthcare, making it easier than ever to access genuine medicines and wellness products online. Stay connected with us on social media for health tips, exclusive offers, and the latest in medical care innovation.</p>
                     <div className='footer-social-icons flex gap-3'>
                         <img className='w-10 cursor-pointer' src={assets.facebook_icon} alt="" />
                         <img className='w-10 cursor-pointer' src={assets.twitter_icon} alt="" />
@@ -27,12 +27,12 @@ const Footer = () => {
                     <h2 className='font-bold text-lg text-white'>GET IN TOUCH</h2>
                     <ul>
                         <li className='mb-[10px] cursor-pointer'>+1-212-456-7890</li>
-                        <li className='mb-[10px] cursor-pointer'>contact@tomato.com</li>
+                        <li className='mb-[10px] cursor-pointer'>contact@mediswift.com</li>
                     </ul>
                 </div>
             </div>
             <hr className='w-full h-[2px] mt-5 mb-2 mx-0 bg-gray-400 border-none' />
-            <p className='footer-copyright text-center'>Copyright 2024 © Tomato.com - All Right Reserved.</p>
+            <p className='footer-copyright text-center'>Copyright 2024 © MediSwift.com - All Right Reserved.</p>
         </div>
     )
 }

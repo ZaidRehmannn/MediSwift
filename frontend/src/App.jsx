@@ -8,21 +8,23 @@ import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
-
+import ProductPage from './pages/ProductPage/ProductPage'
+  
 const App = () => {
   const [showLogin, setshowLogin] = useState(false)
 
   return (
     <>
       {showLogin ? <LoginPopup setshowLogin={setshowLogin} /> : <></>}
+      <Navbar setshowLogin={setshowLogin} />
       <div className='app w-[80%] m-auto'>
-        <Navbar setshowLogin={setshowLogin} />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/cart' element={<Cart />}></Route>
           <Route path='/order' element={<PlaceOrder />}></Route>
           <Route path='/verify' element={<Verify />}></Route>
           <Route path='/myorders' element={<MyOrders />}></Route>
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
       </div>
       <Footer />

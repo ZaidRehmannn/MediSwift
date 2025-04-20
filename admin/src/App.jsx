@@ -10,22 +10,25 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const url = "http://localhost:4000";
-
   return (
-    <div>
-      <ToastContainer />
-      <Navbar />
-      <hr />
-      <div className='app-content flex'>
-        <Sidebar />
-        <Routes>
-          <Route path='/add' element={<Add url={url} />} />
-          <Route path='/list' element={<List url={url} />} />
-          <Route path='/orders' element={<Orders url={url} />} />
-        </Routes>
-      </div>
-    </div>
-  )
+    <div className='h-screen overflow-hidden flex flex-col'>
+  <ToastContainer />
+  <Navbar />
+  <hr />
+  <div className='flex flex-1 h-[calc(100vh-4rem)] overflow-hidden'>
+  <Sidebar />
+  <div className='w-full overflow-hidden'>
+    <Routes>
+      <Route path='/add' element={<Add url={url} />} />
+      <Route path='/list' element={<List url={url} />} />
+      <Route path='/orders' element={<Orders url={url} />} />
+    </Routes>
+  </div>
+</div>
+
+</div>
+
+  );
 }
 
-export default App
+export default App;
