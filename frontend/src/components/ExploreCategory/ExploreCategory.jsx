@@ -10,7 +10,7 @@ const ExploreCategory = ({ category, setcategory }) => {
             </h1>
 
             {/* Subheading / Paragraph */}
-            <p className='explore-category-text text-sm md:text-base text-[#808080] md:max-w-[75%] xl:max-w-[60%] leading-relaxed'>
+            <p className='explore-category-text text-sm md:text-base text-[#808080] lg:max-w-[75%] xl:max-w-[60%] leading-relaxed'>
                 Discover a comprehensive range of trusted medicines and healthcare essentials, carefully organized by category to help you find exactly what you need. Whether it's managing chronic conditions, treating common illnesses, or boosting overall wellness — your health is our top priority.
             </p>
 

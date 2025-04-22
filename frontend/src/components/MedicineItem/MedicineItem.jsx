@@ -8,7 +8,7 @@ const MedicineItem = ({ id, name, price, description, image }) => {
     const navigate = useNavigate();
 
     return (
-        <div className='w-full max-w-[280px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col transition-transform duration-300 hover:scale-[1.02]' onClick={() => navigate(`/product/${id}`)}>
+        <div className='w-full max-w-[240px] h-[350px] bg-white rounded-2xl shadow-md overflow-hidden flex flex-col transition-transform duration-300 hover:scale-[1.02] justify-center items-center border-2' onClick={() => navigate(`/product/${id}`)}>
             {/* Medicine Image */}
             <div className='h-[180px] w-full relative flex items-center justify-center'>
                 <img
@@ -54,8 +54,8 @@ const MedicineItem = ({ id, name, price, description, image }) => {
             {/* Medicine Details */}
             <div className='flex flex-col flex-grow justify-between p-4'>
                 <div className='mb-2'>
-                    <p className='text-lg font-semibold truncate'>{name}</p>
-                    <p className='text-sm text-gray-600 line-clamp-3'>{description}</p>
+                    <p className='text-lg font-semibold truncate max-w-[180px]'>{name}</p>
+                    <p className='text-sm text-gray-600 truncate-3-lines'>{description}</p>
                 </div>
                 <div className='flex justify-between items-center mt-3'>
                     <p className='text-green-700 font-bold text-lg'>${price}</p>

@@ -15,7 +15,7 @@ const Navbar = ({ setshowLogin }) => {
   };
 
   return (
-    <div className='navbar flex justify-between items-center py-4 px-28 bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40'>
+    <div className='navbar flex justify-between items-center py-4 px-10 md:px-28 bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40'>
       {/* Logo */}
       <div className='w-1/3 md:w-1/4 lg:w-1/5 flex items-center'>
         <Link to='/'>
@@ -68,9 +68,7 @@ const Navbar = ({ setshowLogin }) => {
       </ul>
 
       {/* Right Icons */}
-      <div className='navbar-right flex items-center gap-5 md:gap-7 xl:gap-9'>
-        <img className='w-5 h-5 md:w-auto md:h-auto' src={assets.search_icon} alt="Search" />
-
+      <div className='navbar-right flex items-center gap-5 md:gap-7 xl:gap-9 xl:min-w-[200px] justify-end'>
         {/* Cart Icon */}
         <div className='navbar-search-icon relative'>
           <Link to='/cart'>
@@ -97,7 +95,7 @@ const Navbar = ({ setshowLogin }) => {
                 onClick={() => navigate('/myorders')}
                 className='flex items-center gap-3 cursor-pointer hover:text-green-600'
               >
-                <img className='w-5' src={assets.bag_icon} alt="Orders" />
+                <img className='w-6' src={assets.bag_icon} alt="Orders" />
                 <p>Orders</p>
               </li>
               <hr />
@@ -105,7 +103,7 @@ const Navbar = ({ setshowLogin }) => {
                 onClick={logout}
                 className='flex items-center gap-3 cursor-pointer hover:text-green-600'
               >
-                <img className='w-5' src={assets.logout_icon} alt="Logout" />
+                <img className='w-6' src={assets.logout_icon} alt="Logout" />
                 <p>Logout</p>
               </li>
             </ul>

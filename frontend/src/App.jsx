@@ -1,35 +1,36 @@
-import React, { useState } from 'react'
-import Navbar from './components/Navbar/Navbar'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import Cart from './pages/Cart/Cart'
-import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
-import Footer from './components/Footer/Footer'
-import LoginPopup from './components/LoginPopup/LoginPopup'
-import Verify from './pages/Verify/Verify'
-import MyOrders from './pages/MyOrders/MyOrders'
-import ProductPage from './pages/ProductPage/ProductPage'
-  
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import Home from './pages/Home/Home';
+import Cart from './pages/Cart/Cart';
+import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
+import Footer from './components/Footer/Footer';
+import LoginPopup from './components/LoginPopup/LoginPopup';
+import Verify from './pages/Verify/Verify';
+import MyOrders from './pages/MyOrders/MyOrders';
+import ProductPage from './pages/ProductPage/ProductPage';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+
 const App = () => {
-  const [showLogin, setshowLogin] = useState(false)
+  const [showLogin, setshowLogin] = useState(false);
 
   return (
-    <>
-      {showLogin ? <LoginPopup setshowLogin={setshowLogin} /> : <></>}
+    <ScrollToTop>
+      {showLogin ? <LoginPopup setshowLogin={setshowLogin} /> : null}
       <Navbar setshowLogin={setshowLogin} />
-      <div className='app w-[80%] m-auto'>
+      <div className='app w-[85%] lg:w-[80%] mx-auto'>
         <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/cart' element={<Cart />}></Route>
-          <Route path='/order' element={<PlaceOrder />}></Route>
-          <Route path='/verify' element={<Verify />}></Route>
-          <Route path='/myorders' element={<MyOrders />}></Route>
+          <Route path='/' element={<Home />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/order' element={<PlaceOrder />} />
+          <Route path='/verify' element={<Verify />} />
+          <Route path='/myorders' element={<MyOrders />} />
           <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
       </div>
       <Footer />
-    </>
-  )
-}
+    </ScrollToTop>
+  );
+};
 
-export default App
+export default App;
