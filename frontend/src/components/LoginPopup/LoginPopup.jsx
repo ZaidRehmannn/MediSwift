@@ -6,6 +6,7 @@ import axios from 'axios';
 const LoginPopup = ({ setshowLogin }) => {
     const { url, settoken } = useContext(StoreContext);
     const [currState, setcurrState] = useState("Sign Up");
+    const [errorMessage, seterrorMessage] = useState("");
     const [data, setdata] = useState({
         firstName: "",
         lastName: "",
@@ -31,14 +32,18 @@ const LoginPopup = ({ setshowLogin }) => {
             newUrl += '/api/user/login'
         }
 
-        const response = await axios.post(newUrl, data);
-        if (response.data.success) {
-            settoken(response.data.token);
-            localStorage.setItem("token", response.data.token);
-            setshowLogin(false);
-        }
-        else {
-            alert(response.data.message);
+        try {
+            const response = await axios.post(newUrl, data);
+            if (response.data.success) {
+                settoken(response.data.token);
+                localStorage.setItem("token", response.data.token);
+                setshowLogin(false);
+            } else {
+                seterrorMessage(response.data.message);
+            }
+        } catch (err) {
+            console.error("Login/Register error:", err);
+            seterrorMessage("Something went wrong. Please try again later.");
         }
     };
 
@@ -78,6 +83,9 @@ const LoginPopup = ({ setshowLogin }) => {
                         </>
                     }
                 </div>
+                {errorMessage && (
+                    <div className="text-red-600 text-sm -mt-2 font-semibold">{errorMessage}</div>
+                )}
                 <button type='submit' className='border-none p-[10px] rounded-[4px] text-white bg-green-700 text-sm cursor-pointer'>{currState === 'Sign Up' ? 'Create Account' : 'Login'}</button>
                 {currState === 'Sign Up'
                     ? <p>Already have an account? <span className='text-green-700 font-semibold cursor-pointer' onClick={() => setcurrState('Login')}>Login here</span></p>

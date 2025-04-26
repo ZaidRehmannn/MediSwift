@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import validator from 'validator';
 
 const createToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET);
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 }
 
 // login user
@@ -16,7 +16,7 @@ const loginUser = async (req, res) => {
             $or: [{ email: loginIdentifier }, { username: loginIdentifier }],
         });
         if (!user) {
-            return res.json({ success: true, message: "User doesn't exist" });
+            return res.json({ success: false, message: "User doesn't exist!" });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -45,36 +45,36 @@ const registerUser = async (req, res) => {
 
         if (exists) {
             if (exists.email === email) {
-                return res.json({ success: false, message: "Email is already in use" });
+                return res.json({ success: false, message: "Email is already in use!" });
             }
             else if (exists.username === username) {
-                return res.json({ success: false, message: "Username is already taken" });
+                return res.json({ success: false, message: "Username is already taken!" });
             }
             else if (exists.phoneNo === phoneNo) {
-                return res.json({ success: false, message: "Phone number already in use" });
+                return res.json({ success: false, message: "Phone number already in use!" });
             }
         }
 
         // validating email format and strong password
         if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Please enter a valid email" });
+            return res.json({ success: false, message: "Please enter a valid email!" });
         }
         if (password.length < 8) {
-            return res.json({ success: false, message: "Password must be at least 8 characters long" });
+            return res.json({ success: false, message: "Password must be at least 8 characters long!" });
         }
         if (!/\d/.test(password)) {
-            return res.json({ success: false, message: "Password must contain at least one digit" });
+            return res.json({ success: false, message: "Password must contain at least one digit!" });
         }
 
         // Validate phone number format
         if (!/^\d+$/.test(phoneNo)) {
-            return res.json({ success: false, message: "Phone number must contain only digits" });
+            return res.json({ success: false, message: "Phone number must contain only digits!" });
         }
         if (phoneNo[0] !== '0') {
-            return res.json({ success: false, message: "Phone number must start with 0" });
+            return res.json({ success: false, message: "Phone number must start with 0!" });
         }
         if (phoneNo.length !== 11) {
-            return res.json({ success: false, message: "Please enter a valid phone number" });
+            return res.json({ success: false, message: "Please enter a valid phone number!" });
         }
 
         // hashing password
@@ -101,4 +101,15 @@ const registerUser = async (req, res) => {
     }
 };
 
-export { loginUser, registerUser };
+// fetching user data
+const userInfo = async (req, res) => {
+    try {
+        const user = await userModel.findById(req.body.userId);
+        res.json({ success: true, userData: user })
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" });
+    }
+}
+
+export { loginUser, registerUser, userInfo };

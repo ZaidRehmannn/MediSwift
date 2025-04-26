@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { StoreContext } from '../../context/StoreContext';
 import { assets } from '../../assets/frontend_assets/assets';
+import { toast } from 'react-toastify';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -59,7 +60,10 @@ const ProductPage = () => {
           {!cartItems[id] ? (
             <button
               className="mt-8 bg-green-600 hover:bg-green-700 text-white py-2 px-8 rounded-lg w-full lg:w-fit"
-              onClick={() => addToCart(id)}
+              onClick={() => {
+                addToCart(id);
+                toast.success("Product Added to Cart");
+              }}
             >
               Add to Cart
             </button>
@@ -69,7 +73,12 @@ const ProductPage = () => {
                 <img
                   className="w-8 cursor-pointer"
                   src={assets.remove_icon_red}
-                  onClick={() => removeFromCart(id)}
+                  onClick={() => {
+                    removeFromCart(id);
+                    if (cartItems[id] === 1) {
+                      toast.error("Product Removed from Cart");
+                    }
+                  }}
                   alt="Remove"
                 />
                 <p className="text-lg font-medium px-4">{cartItems[id]}</p>

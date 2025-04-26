@@ -8,6 +8,7 @@ const StoreContextProvider = (props) => {
     const url = "http://localhost:4000";
     const [token, settoken] = useState("");
     const [medicine_list, setmedicine_list] = useState([]);
+    const [page, setpage] = useState("Home");
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -45,9 +46,13 @@ const StoreContextProvider = (props) => {
     };
 
     const loadCartData = async (token) => {
-        const response = await axios.post(url + "api/cart/get", {}, { headers: { token } });
+        const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
         setcartItems(response.data.cartItems);
     };
+
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }, [cartItems]);
 
     useEffect(() => {
         async function loadData() {
@@ -69,7 +74,9 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
         url,
         token,
-        settoken
+        settoken,
+        page,
+        setpage
     }
     return (
         <StoreContext.Provider value={contextValue}>

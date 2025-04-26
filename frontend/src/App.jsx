@@ -9,13 +9,18 @@ import LoginPopup from './components/LoginPopup/LoginPopup';
 import Verify from './pages/Verify/Verify';
 import MyOrders from './pages/MyOrders/MyOrders';
 import ProductPage from './pages/ProductPage/ProductPage';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import ContactUs from './pages/ContactUs/ContactUs';
+import AboutUs from './pages/AboutUs/AboutUs';
+import Store from './pages/Store/Store';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const [showLogin, setshowLogin] = useState(false);
 
   return (
     <ScrollToTop>
+      <ToastContainer />
       {showLogin ? <LoginPopup setshowLogin={setshowLogin} /> : null}
       <Navbar setshowLogin={setshowLogin} />
       <div className='app w-[85%] lg:w-[80%] mx-auto'>
@@ -26,6 +31,9 @@ const App = () => {
           <Route path='/verify' element={<Verify />} />
           <Route path='/myorders' element={<MyOrders />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path='/contactus' element={<ContactUs />} />
+          <Route path='/aboutus' element={<AboutUs />} />
+          <Route path='/store' element={<Store />} />
         </Routes>
       </div>
       <Footer />

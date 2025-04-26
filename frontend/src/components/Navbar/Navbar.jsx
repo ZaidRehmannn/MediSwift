@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setshowLogin }) => {
-  const [menu, setmenu] = useState('Home');
-  const { getTotalCartAmount, token, settoken } = useContext(StoreContext);
+  const { getTotalCartAmount, token, settoken, page, setpage } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
@@ -23,6 +22,7 @@ const Navbar = ({ setshowLogin }) => {
             src={assets.logo}
             alt="MediSwift Logo"
             className='h-[75px] w-[173px] object-contain'
+            onClick={()=>setpage('Home')}
           />
         </Link>
       </div>
@@ -31,40 +31,40 @@ const Navbar = ({ setshowLogin }) => {
       <ul className='navbar-menu hidden lg:flex list-none gap-4 xl:gap-5 text-[#2f4858] text-base xl:text-lg font-medium'>
         <Link
           to='/'
-          onClick={() => setmenu('Home')}
-          className={menu === 'Home'
+          onClick={() => setpage('Home')}
+          className={page === 'Home'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
         >
           Home
         </Link>
-        <a
-          href='#explore-menu'
-          onClick={() => setmenu('Menu')}
-          className={menu === 'Menu'
+        <Link
+          to='/aboutus'
+          onClick={() => setpage('About Us')}
+          className={page === 'About Us'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
         >
-          Menu
-        </a>
-        <a
-          href='#app-download'
-          onClick={() => setmenu('Mobile-App')}
-          className={menu === 'Mobile-App'
+          About Us
+        </Link>
+        <Link
+          to='/store?category=All'
+          onClick={() => setpage('Store')}
+          className={page === 'Store'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
         >
-          Mobile-App
-        </a>
-        <a
-          href='#footer'
-          onClick={() => setmenu('Contact Us')}
-          className={menu === 'Contact Us'
+          Store
+        </Link>
+        <Link
+          to='/contactus'
+          onClick={() => setpage('Contact Us')}
+          className={page === 'Contact Us'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
         >
           Contact Us
-        </a>
+        </Link>
       </ul>
 
       {/* Right Icons */}

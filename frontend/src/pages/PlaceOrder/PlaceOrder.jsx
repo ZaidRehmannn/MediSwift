@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, medicine_list, cartItems, url } = useContext(StoreContext);
+  const navigate = useNavigate();
   const [data, setdata] = useState({
     firstName: "",
     lastName: "",
@@ -16,6 +17,29 @@ const PlaceOrder = () => {
     country: "",
     phone: ""
   });
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(url + "/api/user/info", { headers: { token } });
+      if (response.data.success) {
+        const user = response.data.userData;
+        setdata({
+          firstName: user.firstName || "",
+          lastName: user.lastName || "",
+          email: user.email || "",
+          street: "",
+          city: "",
+          state: "",
+          zipcode: "",
+          country: "",
+          phone: user.phoneNo || ""
+        });
+      }
+    } catch (error) {
+      console.error("Failed to fetch user data", error);
+    }
+  };
+
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -48,7 +72,6 @@ const PlaceOrder = () => {
     }
   };
 
-  const navigate = useNavigate();
   useEffect(() => {
     if (!token) {
       navigate('/cart');
@@ -57,6 +80,11 @@ const PlaceOrder = () => {
       navigate('/cart');
     }
   }, [token])
+
+  useEffect(() => {
+    fetchUserData();
+  }, [])
+
 
   return (
     <form className='place-order flex items-start justify-between gap-12 mt-24' onSubmit={placeOrder}>

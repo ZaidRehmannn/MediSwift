@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const MedicineItem = ({ id, name, price, description, image }) => {
     const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
@@ -22,7 +23,8 @@ const MedicineItem = ({ id, name, price, description, image }) => {
                         src={assets.add_icon_white}
                         onClick={(e) => {
                             e.stopPropagation();
-                            addToCart(id)
+                            addToCart(id);
+                            toast.success("Product Added to Cart");
                         }}
                         alt="Add"
                     />
@@ -33,7 +35,10 @@ const MedicineItem = ({ id, name, price, description, image }) => {
                             src={assets.remove_icon_red}
                             onClick={(e) => {
                                 e.stopPropagation();
-                                removeFromCart(id)
+                                removeFromCart(id);
+                                if (cartItems[id] === 1) {
+                                    toast.error("Product Removed from Cart");
+                                }
                             }}
                             alt="Remove"
                         />
@@ -43,7 +48,7 @@ const MedicineItem = ({ id, name, price, description, image }) => {
                             src={assets.add_icon_green}
                             onClick={(e) => {
                                 e.stopPropagation();
-                                addToCart(id)
+                                addToCart(id);
                             }}
                             alt="Add"
                         />

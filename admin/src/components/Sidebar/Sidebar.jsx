@@ -1,6 +1,8 @@
 import React from 'react';
 import { assets } from '../../assets/assets';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
   return (
@@ -10,8 +12,7 @@ const Sidebar = () => {
         <NavLink
           to='/add'
           className={({ isActive }) =>
-            `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${
-              isActive ? 'bg-green-100 border-2 border-green-700' : ''
+            `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
             }`
           }
         >
@@ -22,8 +23,7 @@ const Sidebar = () => {
         <NavLink
           to='/list'
           className={({ isActive }) =>
-            `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${
-              isActive ? 'bg-green-100 border-2 border-green-700' : ''
+            `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
             }`
           }
         >
@@ -34,13 +34,23 @@ const Sidebar = () => {
         <NavLink
           to='/orders'
           className={({ isActive }) =>
-            `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${
-              isActive ? 'bg-green-100 border-2 border-green-700' : ''
+            `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
             }`
           }
         >
           <img src={assets.order_icon} alt="" />
           <p className='hidden lg:block'>Orders</p>
+        </NavLink>
+
+        <NavLink
+          to='/queries'
+          className={({ isActive }) =>
+            `sidebar-option flex items-center gap-2 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[8px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
+            }`
+          }
+        >
+          <FontAwesomeIcon icon={faClipboardQuestion} className='w-8 h-8' />
+          <p className='hidden lg:block'>Queries</p>
         </NavLink>
 
       </div>

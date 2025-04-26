@@ -16,11 +16,11 @@ const Footer = () => {
                 </div>
                 <div className='footer-content-center flex flex-col items-start gap-5'>
                     <h2 className='font-bold text-lg text-white'>COMPANY</h2>
-                    <ul>
-                        <li className='mb-[10px] cursor-pointer'>Home</li>
-                        <li className='mb-[10px] cursor-pointer'>About Us</li>
-                        <li className='mb-[10px] cursor-pointer'>Delivery</li>
-                        <li className='mb-[10px] cursor-pointer'>Privacy Policy</li>
+                    <ul className='flex flex-col'>
+                        <a href='/' className='mb-[10px] cursor-pointer'>Home</a>
+                        <a href='/aboutus' className='mb-[10px] cursor-pointer'>About Us</a>
+                        <a href='/contactus' className='mb-[10px] cursor-pointer'>Contact Us</a>
+                        <a className='mb-[10px] cursor-pointer'>Privacy Policy</a>
                     </ul>
                 </div>
                 <div className='footer-content-right flex flex-col items-start gap-5'>

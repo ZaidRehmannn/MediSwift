@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import Header from '../../components/Header/Header'
 import ExploreCategory from '../../components/ExploreCategory/ExploreCategory'
-import MedicineDisplay from '../../components/MedicineDisplay/MedicineDisplay'
 import AppDownload from '../../components/AppDownload/AppDownload'
+import HomeMedicines from '../../components/HomeMedicines/HomeMedicines'
 
 const Home = () => {
-    const [category, setcategory] = useState("All")
-
     return (
         <div>
             <Header />
-            <ExploreCategory category={category} setcategory={setcategory} />
-            <MedicineDisplay category={category} />
+            <ExploreCategory />
+            <HomeMedicines />
             <AppDownload />
         </div>
     )

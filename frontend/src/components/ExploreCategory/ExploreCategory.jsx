@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { category_list } from '../../assets/frontend_assets/assets'
+import { useNavigate } from 'react-router-dom';
+import { StoreContext } from '../../context/StoreContext'
 
-const ExploreCategory = ({ category, setcategory }) => {
+const ExploreCategory = () => {
+    const navigate = useNavigate();
+    const { setpage } = useContext(StoreContext);
+
     return (
         <div className='explore-category flex flex-col gap-5' id='explore-category'>
             {/* Heading */}
@@ -17,17 +22,19 @@ const ExploreCategory = ({ category, setcategory }) => {
             {/* Category List */}
             <div className='explore-category-list flex justify-between items-center gap-7 text-center my-5 mx-0 overflow-x-scroll scrollbar-hide'>
                 {category_list.map((item, index) => {
-                    const isSelected = category === item.category_name;
                     return (
                         <div
-                            onClick={() => setcategory(prev => prev === item.category_name ? "All" : item.category_name)}
+                            onClick={() => {
+                                navigate(`/store?category=${encodeURIComponent(item.category_name)}`)
+                                setpage('Store')
+                            }}
                             key={index}
                             className='explore-category-list-item flex flex-col items-center min-w-20 cursor-pointer'
                         >
                             <img
                                 src={item.category_image}
                                 alt={item.category_name}
-                                className={`w-[90px] h-[90px] object-cover rounded-full transition duration-200 ${isSelected ? 'border-4 border-solid border-green-700 p-[2px]' : 'border-2 border-gray-300'}`}
+                                className="w-[90px] h-[90px] object-cover rounded-full transition duration-200 border-2 border-gray-300"
                             />
                             <p className='mt-2 text-[#747474] text-sm md:text-base lg:text-lg'>
                                 {item.category_name}
