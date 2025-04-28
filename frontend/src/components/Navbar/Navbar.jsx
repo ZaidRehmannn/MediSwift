@@ -22,7 +22,7 @@ const Navbar = ({ setshowLogin }) => {
             src={assets.logo}
             alt="MediSwift Logo"
             className='h-[75px] w-[173px] object-contain'
-            onClick={()=>setpage('Home')}
+            // onClick={()=>setpage('Home')}
           />
         </Link>
       </div>
@@ -31,7 +31,7 @@ const Navbar = ({ setshowLogin }) => {
       <ul className='navbar-menu hidden lg:flex list-none gap-4 xl:gap-5 text-[#2f4858] text-base xl:text-lg font-medium'>
         <Link
           to='/'
-          onClick={() => setpage('Home')}
+          // onClick={() => setpage('Home')}
           className={page === 'Home'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
@@ -40,7 +40,7 @@ const Navbar = ({ setshowLogin }) => {
         </Link>
         <Link
           to='/aboutus'
-          onClick={() => setpage('About Us')}
+          // onClick={() => setpage('About Us')}
           className={page === 'About Us'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
@@ -49,7 +49,7 @@ const Navbar = ({ setshowLogin }) => {
         </Link>
         <Link
           to='/store?category=All'
-          onClick={() => setpage('Store')}
+          // onClick={() => setpage('Store')}
           className={page === 'Store'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}

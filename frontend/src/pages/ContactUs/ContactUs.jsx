@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StoreContext } from '../../context/StoreContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faClock } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,11 @@ const ContactUs = () => {
         email: "",
         message: ""
     });
+    const { setpage } = useContext(StoreContext);
+              
+    useEffect(() => { 
+        setpage("Contact Us");
+    },[])
 
     const handleChange = (e) => {
         const { id, value } = e.target;

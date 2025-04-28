@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { StoreContext } from '../../context/StoreContext';
 
 const AboutUs = () => {
+    const { setpage } = useContext(StoreContext);
+  
+    useEffect(() => { 
+        setpage("About Us");
+    },[])
+   
+
     return (
         <div className="max-w-4xl mx-auto mt-10 p-6 border-2 border-green-600 bg-white shadow-xl rounded-xl">
             <h2 className="text-2xl font-bold mb-6 text-center text-green-700">About Us</h2>

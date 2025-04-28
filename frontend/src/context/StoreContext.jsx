@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
     const url = "http://localhost:4000";
     const [token, settoken] = useState("");
     const [medicine_list, setmedicine_list] = useState([]);
-    const [page, setpage] = useState("Home");
+    const [page, setpage] = useState("");
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
