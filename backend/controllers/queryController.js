@@ -5,17 +5,17 @@ const sendQuery = async (req, res) => {
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
-        return res.json({ success: false, message: "All fields are required." });
+        return res.status(400).json({ success: false, message: "All fields are required." });
     }
 
     try {
         const query = new queryModel({ name, email, message });
         await query.save();
 
-        res.json({ success: true, message: "Your message has been sent successfully!" });
+        res.status(201).json({ success: true, message: "Your message has been sent successfully!" });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "There was an error sending your message." });
+        res.status(500).json({ success: false, message: "There was an error sending your message." });
     }
 };
 
@@ -23,10 +23,10 @@ const sendQuery = async (req, res) => {
 const fetchQueries = async (req, res) => {
     try {
         const queries = await queryModel.find({});
-        res.json({ success: true, queries })
+        res.status(200).json({ success: true, queries });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error fetching list" })
+        res.status(500).json({ success: false, message: "Error fetching list" });
     }
 };
 

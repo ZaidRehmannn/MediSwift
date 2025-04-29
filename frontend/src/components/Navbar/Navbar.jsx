@@ -23,7 +23,6 @@ const Navbar = ({ setshowLogin }) => {
             src={assets.logo}
             alt="MediSwift Logo"
             className='h-[75px] w-[173px] object-contain'
-            // onClick={()=>setpage('Home')}
           />
         </Link>
       </div>
@@ -32,7 +31,6 @@ const Navbar = ({ setshowLogin }) => {
       <ul className='navbar-menu hidden lg:flex list-none gap-4 xl:gap-5 text-[#2f4858] text-base xl:text-lg font-medium'>
         <Link
           to='/'
-          // onClick={() => setpage('Home')}
           className={page === 'Home'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
@@ -41,7 +39,6 @@ const Navbar = ({ setshowLogin }) => {
         </Link>
         <Link
           to='/aboutus'
-          // onClick={() => setpage('About Us')}
           className={page === 'About Us'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
@@ -50,7 +47,6 @@ const Navbar = ({ setshowLogin }) => {
         </Link>
         <Link
           to='/store?category=All'
-          // onClick={() => setpage('Store')}
           className={page === 'Store'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}
@@ -71,7 +67,7 @@ const Navbar = ({ setshowLogin }) => {
       {/* Right Icons */}
       <div className='navbar-right flex items-center gap-3 xl:gap-9 xl:min-w-[200px] justify-end'>
         {/* Cart Icon */}
-        <div className='navbar-search-icon relative'>
+        <div className='relative hidden lg:block'>
           <Link to='/cart'>
             <img className='w-5 h-5 md:w-auto md:h-auto' src={assets.basket_icon} alt="Cart" />
           </Link>
@@ -84,12 +80,12 @@ const Navbar = ({ setshowLogin }) => {
         {!token ? (
           <button
             onClick={() => setshowLogin(true)}
-            className='bg-white text-green-700 border-2 border-green-700 px-5 py-1 md:px-7 md:py-2 rounded-full cursor-pointer transition duration-300 hover:bg-green-100 hover:text-green-800 text-sm md:text-base'
+            className='bg-white text-green-700 border-2 border-green-700 px-5 py-1 md:px-7 md:py-2 rounded-full cursor-pointer transition duration-300 hover:bg-green-100 hover:text-green-800 text-sm md:text-base hidden lg:block'
           >
             Sign in
           </button>
         ) : (
-          <div className='navbar-profile relative group'>
+          <div className='navbar-profile relative group hidden lg:block'>
             <img src={assets.profile_icon} alt="Profile" />
             <ul className='nav-profile-dropdown absolute hidden right-0 z-[1] group-hover:flex flex-col gap-3 bg-white py-3 px-6 rounded border border-green-600 shadow-lg list-none w-36'>
               <li

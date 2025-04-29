@@ -16,20 +16,20 @@ const loginUser = async (req, res) => {
             $or: [{ email: loginIdentifier }, { username: loginIdentifier }],
         });
         if (!user) {
-            return res.json({ success: false, message: "User doesn't exist!" });
+            return res.status(404).json({ success: false, message: "User doesn't exist!" });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.json({ success: false, message: "Invalid Password!" });
+            return res.status(401).json({ success: false, message: "Invalid Password!" });
         }
 
         const token = createToken(user._id);
-        res.json({ success: true, token });
+        res.status(200).json({ success: true, token });
     }
     catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.status(500).json({ success: false, message: "Error" });
     }
 };
 
@@ -38,50 +38,45 @@ const registerUser = async (req, res) => {
     const { firstName, lastName, username, email, password, phoneNo } = req.body;
 
     try {
-        // Check if the user with the given email, username or phone number already exists
         const exists = await userModel.findOne({
             $or: [{ email: email }, { username: username }, { phoneNo: phoneNo }],
         });
 
         if (exists) {
             if (exists.email === email) {
-                return res.json({ success: false, message: "Email is already in use!" });
+                return res.status(400).json({ success: false, message: "Email is already in use!" });
             }
             else if (exists.username === username) {
-                return res.json({ success: false, message: "Username is already taken!" });
+                return res.status(400).json({ success: false, message: "Username is already taken!" });
             }
             else if (exists.phoneNo === phoneNo) {
-                return res.json({ success: false, message: "Phone number already in use!" });
+                return res.status(400).json({ success: false, message: "Phone number already in use!" });
             }
         }
 
-        // validating email format and strong password
         if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Please enter a valid email!" });
+            return res.status(400).json({ success: false, message: "Please enter a valid email!" });
         }
         if (password.length < 8) {
-            return res.json({ success: false, message: "Password must be at least 8 characters long!" });
+            return res.status(400).json({ success: false, message: "Password must be at least 8 characters long!" });
         }
         if (!/\d/.test(password)) {
-            return res.json({ success: false, message: "Password must contain at least one digit!" });
+            return res.status(400).json({ success: false, message: "Password must contain at least one digit!" });
         }
 
-        // Validate phone number format
         if (!/^\d+$/.test(phoneNo)) {
-            return res.json({ success: false, message: "Phone number must contain only digits!" });
+            return res.status(400).json({ success: false, message: "Phone number must contain only digits!" });
         }
         if (phoneNo[0] !== '0') {
-            return res.json({ success: false, message: "Phone number must start with 0!" });
+            return res.status(400).json({ success: false, message: "Phone number must start with 0!" });
         }
         if (phoneNo.length !== 11) {
-            return res.json({ success: false, message: "Please enter a valid phone number!" });
+            return res.status(400).json({ success: false, message: "Please enter a valid phone number!" });
         }
 
-        // hashing password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create a new user
         const newUser = new userModel({
             firstName: firstName,
             lastName: lastName,
@@ -91,13 +86,13 @@ const registerUser = async (req, res) => {
             phoneNo: phoneNo
         });
 
-        const user = newUser.save();
+        const user = await newUser.save(); // Added await here
         const token = createToken(user._id);
-        res.json({ success: true, token });
+        res.status(201).json({ success: true, token });
     }
     catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.status(500).json({ success: false, message: "Error" });
     }
 };
 
@@ -105,10 +100,10 @@ const registerUser = async (req, res) => {
 const userInfo = async (req, res) => {
     try {
         const user = await userModel.findById(req.body.userId);
-        res.json({ success: true, userData: user })
+        res.status(200).json({ success: true, userData: user })
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.status(500).json({ success: false, message: "Error" });
     }
 }
 

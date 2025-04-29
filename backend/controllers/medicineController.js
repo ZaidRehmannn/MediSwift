@@ -17,10 +17,10 @@ const addMedicine = async (req, res) => {
 
     try {
         await medicine.save();
-        res.json({ success: true, message: "Medicine Added" });
+        res.status(201).json({ success: true, message: "Medicine Added" });
     } catch (error) {
         console.error(error);
-        res.json({ success: false, message: "Error" });
+        res.status(500).json({ success: false, message: "Error" });
     }
 };
 
@@ -28,10 +28,10 @@ const addMedicine = async (req, res) => {
 const listMedicine = async (req, res) => {
     try {
         const medicines = await medicineModel.find({});
-        res.json({ success: true, data: medicines });
+        res.status(200).json({ success: true, data: medicines });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.status(500).json({ success: false, message: "Error" });
     }
 }
 
@@ -45,10 +45,10 @@ const removeMedicine = async (req, res) => {
         await cloudinary.uploader.destroy(publicId);
         await medicineModel.findByIdAndDelete(req.body.id);
 
-        res.json({ success: true, message: "Medicine Removed" });
+        res.status(200).json({ success: true, message: "Medicine Removed" });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.status(500).json({ success: false, message: "Error" });
     }
 };
 
@@ -57,10 +57,10 @@ const fetchMedicine = async (req, res) => {
     try {
         const { id } = req.params;
         const medicine = await medicineModel.findById(id);
-        res.json({ success: true, product: medicine })
+        res.status(200).json({ success: true, product: medicine });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        res.status(500).json({ success: false, message: "Error" });
     }
 };
 
