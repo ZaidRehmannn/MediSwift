@@ -13,7 +13,7 @@ const MedicineDisplay = ({ category }) => {
         inputRef.current.focus();
     };
 
-    const categories = ["All", ...new Set(medicine_list.map(item => item.category))];
+    const categories = ["All", ...new Set(medicine_list?.map(item => item.category))];
 
     return (
         <div className='medicine-display mt-8' id='medicines-catalog'>

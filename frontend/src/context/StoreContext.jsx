@@ -4,6 +4,7 @@ import axios from "axios";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
+    const [isOpen, setIsOpen] = useState(false)
     const [cartItems, setcartItems] = useState({});
     const url = "http://localhost:4000";
     const [token, settoken] = useState("");
@@ -76,7 +77,9 @@ const StoreContextProvider = (props) => {
         token,
         settoken,
         page,
-        setpage
+        setpage,
+        isOpen, 
+        setIsOpen
     }
     return (
         <StoreContext.Provider value={contextValue}>

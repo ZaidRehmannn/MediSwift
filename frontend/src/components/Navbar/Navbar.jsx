@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
+import { IoMenuSharp } from "react-icons/io5";
 
 const Navbar = ({ setshowLogin }) => {
-  const { getTotalCartAmount, token, settoken, page, setpage } = useContext(StoreContext);
+  const { getTotalCartAmount, token, settoken, page, setpage , setIsOpen } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
@@ -68,7 +69,7 @@ const Navbar = ({ setshowLogin }) => {
       </ul>
 
       {/* Right Icons */}
-      <div className='navbar-right flex items-center gap-5 md:gap-7 xl:gap-9 xl:min-w-[200px] justify-end'>
+      <div className='navbar-right flex items-center gap-3 xl:gap-9 xl:min-w-[200px] justify-end'>
         {/* Cart Icon */}
         <div className='navbar-search-icon relative'>
           <Link to='/cart'>
@@ -109,6 +110,9 @@ const Navbar = ({ setshowLogin }) => {
             </ul>
           </div>
         )}
+        <div className='block lg:hidden cursor-pointer' onClick={() => setIsOpen(true)} >
+           <IoMenuSharp size={40} className='text-green-700' />
+        </div>
       </div>
     </div>
   );
