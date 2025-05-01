@@ -5,14 +5,17 @@ import { StoreContext } from '../../context/StoreContext';
 import { IoMenuSharp } from "react-icons/io5";
 
 const Navbar = ({ setshowLogin }) => {
-  const { getTotalCartAmount, token, settoken, page, setpage , setIsOpen } = useContext(StoreContext);
+  const { getTotalCartAmount, token, settoken, page, setpage , setIsOpen , setcartItems } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("token");
     settoken("");
     navigate("/");
+    setcartItems({})
   };
+
+  console.log(token , "nav bar");
 
   return (
     <div className='navbar flex justify-between items-center py-4 px-10 md:px-28 bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40'>

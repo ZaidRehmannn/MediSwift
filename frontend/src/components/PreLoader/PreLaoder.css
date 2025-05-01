@@ -1,0 +1,6 @@
+.preLaoder{
+    z-index: 10000;
+    opacity: 1;
+    pointer-events: none;
+}
+

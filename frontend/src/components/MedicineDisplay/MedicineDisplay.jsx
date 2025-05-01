@@ -56,13 +56,13 @@ const MedicineDisplay = ({ category }) => {
 
             <div className='medicine-display-list grid mt-8 gap-y-10 grid-cols-[repeat(auto-fill,_minmax(240px,1fr))] place-items-center'>
                 {(() => {
-                    const filteredItems = medicine_list.filter(item =>
+                    const filteredItems = medicine_list?.filter(item =>
                         (selectedCategory === 'All' || item.category === selectedCategory) &&
                         item.name.toLowerCase().includes(searchTerm.toLowerCase())
                     );
 
-                    return filteredItems.length > 0 ? (
-                        filteredItems.map((item, index) => (
+                    return filteredItems?.length > 0 ? (
+                        filteredItems?.map((item, index) => (
                             <MedicineItem key={index} id={item._id} name={item.name} price={item.price} description={item.description} image={item.image} />
                         ))
                     ) : (

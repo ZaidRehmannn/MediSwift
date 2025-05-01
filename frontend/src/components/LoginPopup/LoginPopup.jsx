@@ -4,7 +4,7 @@ import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 
 const LoginPopup = ({ setshowLogin }) => {
-    const { url, settoken } = useContext(StoreContext);
+    const { url, settoken , loadCartData} = useContext(StoreContext);
     const [currState, setcurrState] = useState("Sign Up");
     const [errorMessage, seterrorMessage] = useState("");
     const [data, setdata] = useState({
@@ -35,8 +35,10 @@ const LoginPopup = ({ setshowLogin }) => {
         try {
             const response = await axios.post(newUrl, data);
             if (response.data.success) {
-                settoken(response.data.token);
+                localStorage.removeItem("cartItems");
                 localStorage.setItem("token", response.data.token);
+                loadCartData(response.data.token)
+                settoken(response.data.token);
                 setshowLogin(false);
             } else {
                 seterrorMessage(response.data.message);

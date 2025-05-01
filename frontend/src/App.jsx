@@ -15,12 +15,14 @@ import Store from './pages/Store/Store';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ToastContainer } from 'react-toastify';
 import SideBar from './components/SideBar/SideBar';
+import PreLoader from './components/PreLoader/PreLoader';
 
 const App = () => {
   const [showLogin, setshowLogin] = useState(false);
 
   return (
     <ScrollToTop>
+      <PreLoader />
       <ToastContainer />
       {showLogin ? <LoginPopup setshowLogin={setshowLogin} /> : null}
       <Navbar setshowLogin={setshowLogin} />
@@ -28,7 +30,7 @@ const App = () => {
       <div className='app w-[85%] lg:w-[80%] mx-auto'>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/cart' element={<Cart />} />
+          <Route path='/cart' element={<Cart setshowLogin={setshowLogin} />} />
           <Route path='/order' element={<PlaceOrder />} />
           <Route path='/verify' element={<Verify />} />
           <Route path='/myorders' element={<MyOrders />} />

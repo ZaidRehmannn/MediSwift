@@ -3,19 +3,24 @@ import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom';
 import LoginError from '../../components/LoginError/LoginError';
 import { assets } from '../../assets/frontend_assets/assets';
+import Loader from '../../components/Loader/Loader';
 
-const Cart = () => {
+const Cart = ({ setshowLogin }) => {
   const { cartItems, medicine_list, removeFromCart, getTotalCartAmount, token, addToCart } = useContext(StoreContext);
   const navigate = useNavigate();
   const [showLoginError, setshowLoginError] = useState(false);
 
   const checkLogin = () => {
     if (!token) {
-      setshowLoginError(true);
+      // setshowLoginError(true);
+      setshowLogin(true)
     } else {
       navigate('/order')
     }
   };
+
+
+  console.log(cartItems, "cart items");
 
   return (
     <>
@@ -32,28 +37,39 @@ const Cart = () => {
           </div>
           <br />
           <hr />
-          {medicine_list.map((item, index) => {
-            if (cartItems[item._id] > 0) {
-              return (
-                <div key={index}>
-                  <div className='cart-items-title cart-items-item grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center text-center text-[max(1vw,12px)] my-[10px] mx-0 text-black'>
-                    <img className='w-11 md:w-[50px] m-auto' src={item.image} alt="" />
-                    <p>{item.name}</p>
-                    <p className='mr-4 md:mr-0'>${item.price}</p>
-                    <p className='mr-5 md:mr-0'>
-                      {cartItems[item._id]}
-                    </p>
-                    <p className='mr-6 md:mr-0'>${item.price * cartItems[item._id]}</p>
-                    <p className='flex flex-col lg:flex-row items-center justify-center gap-3 mr-4 md:mr-0'>
-                      <img src={assets.remove_icon_red} alt="Remove" className='w-5 cursor-pointer order-2 lg:order-1' onClick={() => removeFromCart(item._id)} />
-                      <img src={assets.add_icon_green} alt="Add" className='w-5 cursor-pointer order-1 lg:order-2' onClick={() => addToCart(item._id)} />
-                    </p>
-                  </div>
-                  <hr className='h-[1px] bg-[#e2e2e2] border-none' />
-                </div>
-              )
-            }
-          })}
+          {
+            Object.keys(cartItems).length !== 0 ? (
+              medicine_list.map((item, index) => {
+                if (cartItems[item._id] > 0) {
+                  return (
+                    <div key={index}>
+                      <div className='cart-items-title cart-items-item grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center text-center text-[max(1vw,12px)] my-[10px] mx-0 text-black'>
+                        <img className='w-11 md:w-[50px] m-auto' src={item.image} alt="" />
+                        <p>{item.name}</p>
+                        <p className='mr-4 md:mr-0'>${item.price}</p>
+                        <p className='mr-5 md:mr-0'>
+                          {cartItems[item._id]}
+                        </p>
+                        <p className='mr-6 md:mr-0'>${item.price * cartItems[item._id]}</p>
+                        <p className='flex flex-col lg:flex-row items-center justify-center gap-3 mr-4 md:mr-0'>
+                          <img src={assets.remove_icon_red} alt="Remove" className='w-5 cursor-pointer order-2 lg:order-1' onClick={() => removeFromCart(item._id)} />
+                          <img src={assets.add_icon_green} alt="Add" className='w-5 cursor-pointer order-1 lg:order-2' onClick={() => addToCart(item._id)} />
+                        </p>
+                      </div>
+                      <hr className='h-[1px] bg-[#e2e2e2] border-none' />
+                    </div>
+                  )
+                }
+              })
+            )
+            :
+            (
+              <div className='w-full py-3' >
+                <p className='text-slate-600 text-center' >Your cart is empty.</p>
+              </div>
+            )
+          }
+         
         </div>
         <div className='cart-bottom mt-20 flex justify-between gap-[max(12vw,20px)] flex-col-reverse lg:flex-row'>
           <div className='cart-total flex flex-col flex-1 gap-5'>
