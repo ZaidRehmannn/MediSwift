@@ -7,14 +7,12 @@ const PreLoader = () => {
   const companyName = "Media Swift";
   
   useEffect(() => {
-    // Simulate loading progress
     const timer = setInterval(() => {
       setProgress(prev => {
         const newProgress = prev + 1;
         if (newProgress >= 100) {
           clearInterval(timer);
           
-          // Add small delay before completing
           setTimeout(() => {
             setIsComplete(true);
           }, 500);
@@ -27,8 +25,7 @@ const PreLoader = () => {
     
     return () => clearInterval(timer);
   }, []);
-  
-  // Split text for letter animation
+
   const letters = companyName.split('');
   
   return (
@@ -42,7 +39,6 @@ const PreLoader = () => {
         pointerEvents: isComplete ? "none" : "all"
       }}
     >
-      {/* Background design elements */}
       <motion.div 
         className="absolute top-1/4 left-1/4 w-1/2 h-1/2 rounded-full bg-blue-100 opacity-30" 
         initial={{ scale: 0 }}
@@ -63,14 +59,13 @@ const PreLoader = () => {
         transition={{ duration: 2.5, delay: 0.3, ease: "easeOut" }}
       />
       
-      {/* Logo container */}
+     
       <motion.div 
         className="mb-8 relative"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {/* You could replace this with your actual logo */}
         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-600 to-yellow-500 flex items-center justify-center shadow-lg">
           <motion.div
             initial={{ rotate: 0 }}
@@ -82,8 +77,7 @@ const PreLoader = () => {
           </motion.div>
         </div>
       </motion.div>
-      
-      {/* Text animation */}
+     
       <div className="flex justify-center mb-8">
         {letters.map((letter, index) => (
           <motion.span
@@ -106,8 +100,7 @@ const PreLoader = () => {
           </motion.span>
         ))}
       </div>
-      
-      {/* Progress indicator */}
+ 
       <div className="w-64 md:w-80 h-1 bg-gray-100 rounded-full overflow-hidden relative">
         <motion.div
           className="h-full bg-gradient-to-r from-green-500  to-amber-500 rounded-full"
@@ -117,7 +110,7 @@ const PreLoader = () => {
         />
       </div>
       
-      {/* Progress text */}
+ 
       <motion.p 
         className="mt-4 text-gray-500 font-medium"
         initial={{ opacity: 0 }}
@@ -127,33 +120,7 @@ const PreLoader = () => {
         {progress}%
       </motion.p>
       
-      {/* Decorative elements */}
-      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-gradient-to-r from-blue-300 to-purple-300 opacity-10"
-            style={{
-              width: `${Math.random() * 100 + 50}px`,
-              height: `${Math.random() * 100 + 50}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            initial={{ scale: 0, x: -20, y: -20 }}
-            animate={{ 
-              scale: [0, 1.2, 1],
-              x: Math.random() * 40 - 20,
-              y: Math.random() * 40 - 20,
-            }}
-            transition={{ 
-              duration: 2 + Math.random() * 3,
-              delay: Math.random() * 2,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          />
-        ))}
-      </div> */}
+
     </motion.div>
   );
 };
