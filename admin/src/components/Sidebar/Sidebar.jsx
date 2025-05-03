@@ -10,7 +10,7 @@ const Sidebar = () => {
       <div className='sidebar-options pt-12 pl-[20%] flex flex-col gap-5'>
 
         <NavLink
-          to='/add'
+          to='../admin/add'
           className={({ isActive }) =>
             `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
             }`
@@ -21,7 +21,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to='/list'
+          to='../admin/list'
           className={({ isActive }) =>
             `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
             }`
@@ -32,7 +32,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to='/orders'
+          to='../admin/orders'
           className={({ isActive }) =>
             `sidebar-option flex items-center gap-3 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[10px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
             }`
@@ -43,7 +43,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to='/queries'
+          to='../admin/queries'
           className={({ isActive }) =>
             `sidebar-option flex items-center gap-2 border border-solid border-[#a9a9a9] border-r-0 py-2 px-[8px] cursor-pointer rounded-tl-md rounded-bl-md ${isActive ? 'bg-green-100 border-2 border-green-700' : ''
             }`

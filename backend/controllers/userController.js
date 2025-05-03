@@ -10,6 +10,7 @@ const createToken = (id) => {
 // login user
 const loginUser = async (req, res) => {
     const { loginIdentifier, password } = req.body;
+    console.log(req.body);
 
     try {
         const user = await userModel.findOne({
@@ -25,7 +26,7 @@ const loginUser = async (req, res) => {
         }
 
         const token = createToken(user._id);
-        res.status(200).json({ success: true, token });
+        res.status(200).json({ success: true, token , user:user });
     }
     catch (error) {
         console.log(error);
@@ -35,7 +36,7 @@ const loginUser = async (req, res) => {
 
 // register user
 const registerUser = async (req, res) => {
-    const { firstName, lastName, username, email, password, phoneNo } = req.body;
+    const { firstName, lastName, username, email, password, phoneNo , userType } = req.body;
 
     try {
         const exists = await userModel.findOne({
@@ -83,7 +84,8 @@ const registerUser = async (req, res) => {
             username: username,
             email: email,
             password: hashedPassword,
-            phoneNo: phoneNo
+            phoneNo: phoneNo,
+            userType :userType
         });
 
         const user = await newUser.save(); // Added await here
@@ -100,6 +102,7 @@ const registerUser = async (req, res) => {
 const userInfo = async (req, res) => {
     try {
         const user = await userModel.findById(req.body.userId);
+        console.log(req.body.userId);
         res.status(200).json({ success: true, userData: user })
     } catch (error) {
         console.log(error);

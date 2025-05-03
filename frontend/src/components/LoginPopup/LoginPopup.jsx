@@ -12,7 +12,8 @@ const LoginPopup = ({ setshowLogin }) => {
         lastName: "",
         loginIdentifier: "",
         password: "",
-        phoneNo: ""
+        phoneNo: "",
+        userType:"user",
     });
 
     const onChangeHandler = (event) => {
