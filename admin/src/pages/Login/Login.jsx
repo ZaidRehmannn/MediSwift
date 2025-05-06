@@ -2,6 +2,7 @@ import React, { useState  } from 'react';
 import { useMediaSwiftAmdin } from '../../context/MediaSwiftAdminContextProvider';
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import { useEffect } from 'react';
 
 
 function Login({url}) {
@@ -10,7 +11,35 @@ function Login({url}) {
   const {settoken} = useMediaSwiftAmdin()
   const [errorMessage , seterrorMessage] = useState("")
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setLoading(true)
+    const token = localStorage.getItem("token");
+
+    const verifyToken = async () => {
+      try {
+        const response = await axios.get(`${url}/api/user/info`, {
+          headers: { token },
+        });
+
+        const userType = response.data?.userData?.userType;
+        if (userType === "admin") {
+          navigate("/admin/add", { replace: true });
+        }
+        setTimeout(() => {
+          setLoading(false);
+        },500)
+      } catch (error) {
+        setTimeout(() => {
+          setLoading(false);
+        },500)
+        console.error("Login token verification failed", error);
+      }
+    };
+
+    verifyToken();
+  }, [url, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,6 +71,13 @@ function Login({url}) {
     }
 };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen fixed top-0 left-0 bottom-0 right-0 bg-white">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

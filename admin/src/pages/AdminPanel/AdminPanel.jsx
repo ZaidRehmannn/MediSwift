@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Add from '../Add/Add';
 import List from '../List/List';
 import Orders from '../Orders/Orders';
@@ -25,6 +25,7 @@ const AdminPanel = () => {
             <Route path='/list' element={<ProtectedRoute><List url={url} /></ProtectedRoute>} />
             <Route path='/orders' element={<ProtectedRoute><Orders url={url} /></ProtectedRoute>} />
             <Route path='/queries' element={<ProtectedRoute><Queries url={url} /></ProtectedRoute>} />
+            <Route path="*" element={<Navigate to="/admin/login" replace />} />
         </Routes>
         </div>
       </div>
