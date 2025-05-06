@@ -16,6 +16,7 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ToastContainer } from 'react-toastify';
 import SideBar from './components/SideBar/SideBar';
 import PreLoader from './components/PreLoader/PreLoader';
+import PageTrans from './components/PageTrans/PageTrans';
 
 const App = () => {
   const [showLogin, setshowLogin] = useState(false);
@@ -24,6 +25,7 @@ const App = () => {
     <ScrollToTop>
       <PreLoader />
       <ToastContainer />
+      <PageTrans />
       {showLogin ? <LoginPopup setshowLogin={setshowLogin} /> : null}
       <Navbar setshowLogin={setshowLogin} />
       <SideBar setshowLogin={setshowLogin} />

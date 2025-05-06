@@ -10,7 +10,9 @@ const StoreContextProvider = (props) => {
     const [token, settoken] = useState("");
     const [medicine_list, setmedicine_list] = useState(undefined);
     const [page, setpage] = useState("");
-
+    const [activePageTrans, setPageTrans] = useState(false);
+    const [movePage, setMovePage] = useState("")
+   
     const addToCart = async (itemId) => {
         let updatedCart;
     
@@ -107,7 +109,11 @@ const StoreContextProvider = (props) => {
         page,
         setpage,
         isOpen, 
-        setIsOpen
+        setIsOpen,
+        setPageTrans, 
+        activePageTrans, 
+        movePage, 
+        setMovePage
     }
     return (
         <StoreContext.Provider value={contextValue}>

@@ -5,8 +5,18 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 
 const HomeMedicines = () => {
-    const { medicine_list, setpage } = useContext(StoreContext);
     const navigate = useNavigate();
+
+    const {setPageTrans , setMovePage ,medicine_list } = useContext(StoreContext);
+    
+    const handleNavigation = (to , name) => {
+        
+            setPageTrans(true)
+            setMovePage(name)
+            setTimeout(() => {
+              navigate(to)
+            }, 1000)
+    }
 
     return (
         <div className='medicine-display mt-8' id='medicines-catalog'>
@@ -46,10 +56,12 @@ const HomeMedicines = () => {
             <div className='flex justify-center items-center mt-16'>
                 <button
                     className='p-5 bg-green-600 text-white rounded-xl'
-                    onClick={() => {
-                        navigate('/store?category=All')
-                        setpage('Store')
-                    }}>
+                    // onClick={() => {
+                    //     navigate('/store?category=All')
+                    //     setpage('Store')
+                    // }}
+                    onClick={() => handleNavigation('/store?category=All' , 'Store')}
+                    >
                     View More Products
                 </button>
             </div>

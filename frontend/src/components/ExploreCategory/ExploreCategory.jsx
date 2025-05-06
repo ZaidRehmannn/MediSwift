@@ -5,7 +5,16 @@ import { StoreContext } from '../../context/StoreContext'
 
 const ExploreCategory = () => {
     const navigate = useNavigate();
-    const { setpage } = useContext(StoreContext);
+    const {setPageTrans , setMovePage } = useContext(StoreContext);
+    
+    const handleNavigation = (to , name) => {
+        
+            setPageTrans(true)
+            setMovePage(name)
+            setTimeout(() => {
+              navigate(to)
+            }, 1000)
+    }
 
     return (
         <div className='explore-category flex flex-col gap-5' id='explore-category'>
@@ -24,10 +33,11 @@ const ExploreCategory = () => {
                 {category_list.map((item, index) => {
                     return (
                         <div
-                            onClick={() => {
-                                navigate(`/store?category=${encodeURIComponent(item.category_name)}`)
-                                setpage('Store')
-                            }}
+                            onClick={() => handleNavigation(`/store?category=${encodeURIComponent(item.category_name)}` , item.category_name)}
+                            // onClick={() => {
+                            //     navigate(`/store?category=${encodeURIComponent(item.category_name)}`)
+                            //     setpage('Store')
+                            // }}
                             key={index}
                             className='explore-category-list-item flex flex-col items-center min-w-20 cursor-pointer'
                         >

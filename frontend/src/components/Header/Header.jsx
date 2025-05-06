@@ -5,7 +5,16 @@ import { StoreContext } from '../../context/StoreContext'
 
 const Header = () => {
     const navigate = useNavigate();
-    const { setpage } = useContext(StoreContext);
+    const {setPageTrans , setMovePage } = useContext(StoreContext);
+
+    const handleNavigation = (to , name) => {
+    
+        setPageTrans(true)
+        setMovePage(name)
+        setTimeout(() => {
+          navigate(to)
+        }, 1000)
+    }
 
     return (
         <div className="header relative h-[50vw] md:h-[45vw] lg:h-[34vw] my-7 mx-auto overflow-hidden">
@@ -23,10 +32,12 @@ const Header = () => {
                 </p>
                 <button
                     className="border-2 border-green-700 text-green-700 font-semibold py-[2vw] px-[4vw] lg:py-[1vw] lg:px-[2.3vw] bg-white text-[max(1vw,10px)] md:text-[max(1vw,13px)] rounded-[50px] transition duration-300 hover:bg-green-100 hover:text-green-800"
-                    onClick={() => {
-                        navigate('/store?category=All')
-                        setpage('Store')
-                    }}>
+                    onClick={() => handleNavigation('/store?category=All' , 'Store')}
+                    // onClick={() => {
+                    //     navigate('/store?category=All')
+                    //     setpage('Store')
+                    // }}
+                    >
                     Shop Medicines
                 </button>
             </div>
