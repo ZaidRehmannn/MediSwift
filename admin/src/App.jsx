@@ -7,10 +7,10 @@ import AdminPanel from './pages/AdminPanel/AdminPanel';
 const App = () => {
   const url = "http://localhost:4000";
   return (
-      <Routes>
-          <Route path='/admin/*' element={<AdminPanel />} />
-          <Route path='/admin/login' element={<Login url={url} />} />
-      </Routes>
+    <Routes>
+      <Route path='/admin/*' element={<AdminPanel />} />
+      <Route path='/admin/login' element={<Login url={url} />} />
+    </Routes>
   );
 }
 

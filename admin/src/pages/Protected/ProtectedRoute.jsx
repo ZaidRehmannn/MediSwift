@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }) => {
       setTimeout(() => {
         setIsAuthorized(false);
         setLoading(false);
-      },500)
+      }, 500)
       return;
     }
 
@@ -28,24 +28,24 @@ const ProtectedRoute = ({ children }) => {
           setTimeout(() => {
             setIsAuthorized(true);
             setLoading(false);
-          },500)
+          }, 500)
         } else {
           setTimeout(() => {
             setIsAuthorized(false);
             setLoading(false);
-          },500)
+          }, 500)
         }
       } catch (error) {
         console.error("Verification failed:", error);
         setTimeout(() => {
-            setIsAuthorized(false);
-            setLoading(false);
-          },500)
+          setIsAuthorized(false);
+          setLoading(false);
+        }, 500)
       } finally {
         setTimeout(() => {
-            setIsAuthorized(true);
-            setLoading(false);
-        },500)
+          setIsAuthorized(true);
+          setLoading(false);
+        }, 500)
       }
     };
 
