@@ -78,3 +78,55 @@ Built with the MERN stack, MediSwift simplifies the traditional pharmacy experie
 
 ---
 
+## 🛠️ Installation
+
+### Prerequisites
+- Node.js (v18+)
+- MongoDB (local or cloud, e.g., MongoDB Atlas)
+- Cloudinary account (for image hosting)
+- Stripe account (for payment processing)
+
+### Clone the Repository
+```bash
+git clone https://github.com/ZaidRehmannn/MediSwift.git
+cd MediSwift
+```
+
+### Backend Setup
+```bash
+cd backend
+npm install
+```
+Create a `.env` file in the backend directory with the following variables:
+```
+PORT=4000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+STRIPE_SECRET_KEY=your_stripe_secret_key
+```
+Run the backend server:
+```bash
+npm run server
+```
+
+### Frontend Setup
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+### Admin Panel Setup
+```bash
+cd ../admin
+npm install
+npm run dev
+```
+
+### Access the Application
+- Frontend: `http://localhost:5173`
+- Backend API: `http://localhost:4000`
+- Admin Panel: `http://localhost:5174`
