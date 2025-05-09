@@ -72,12 +72,6 @@ Built with the MERN stack, MediSwift simplifies the traditional pharmacy experie
 
 ---
 
-## 🌍 Live Demo
-
-- 🚀 **Live Site**: [https://mediswift.vercel.app](https://mediswift.vercel.app)
-
----
-
 ## 🛠️ Installation
 
 ### Prerequisites
