@@ -20,7 +20,7 @@ const AdminPanel = () => {
       <div className='flex flex-1 h-[calc(100vh-4rem)] overflow-hidden'>
         <Sidebar />
         <div className='w-full overflow-hidden'>
-        <Routes>
+          <Routes>
             <Route path='/add' element={<ProtectedRoute><Add url={url} /></ProtectedRoute>} />
             <Route path='/list' element={<ProtectedRoute><List url={url} /></ProtectedRoute>} />
             <Route path='/orders' element={<ProtectedRoute><Orders url={url} /></ProtectedRoute>} />

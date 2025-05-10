@@ -73,7 +73,7 @@ const Navbar = ({ setshowLogin }) => {
           Store
         </p>
         <p
-          onClick={() => handleNavigation('contactus' , 'ContactUs')}
+          onClick={() => handleNavigation('contactus' , 'Contact Us')}
           // to='/contactus'
           // onClick={() => setpage('Contact Us')}
           className={page === 'Contact Us'

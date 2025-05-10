@@ -3,14 +3,14 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import MediaSwiftAdminContextProvider from './context/MediaSwiftAdminContextProvider.jsx'
+import MediSwiftAdminContextProvider from './context/MediSwiftAdminContextProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <MediaSwiftAdminContextProvider>
+    <MediSwiftAdminContextProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </MediaSwiftAdminContextProvider>
+    </MediSwiftAdminContextProvider>
   </StrictMode>,
 )
