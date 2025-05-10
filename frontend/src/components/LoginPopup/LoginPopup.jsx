@@ -36,7 +36,7 @@ const LoginPopup = ({ setshowLogin }) => {
         try {
             const response = await axios.post(newUrl, data);
             if (response.data.success) {
-                localStorage.removeItem("cartItems");
+                // localStorage.removeItem("cartItems");
                 localStorage.setItem("token", response.data.token);
                 loadCartData(response.data.token)
                 settoken(response.data.token);

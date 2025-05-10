@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
     const [isOpen, setIsOpen] = useState(false)
     const [cartItems, setcartItems] = useState({});
-    const url = "http://localhost:4000";
+    const url = import.meta.env.VITE_API_URL;
     const [token, settoken] = useState("");
     const [medicine_list, setmedicine_list] = useState(undefined);
     const [page, setpage] = useState("");
@@ -80,23 +80,30 @@ const StoreContextProvider = (props) => {
 
     const loadCartData = async (token) => {
         console.log(token);
-        if (token) {
-            try {
-                const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
-                setcartItems(response.data.cartData);
-                localStorage.removeItem("cartItems");
-            } catch (err) {
-                console.error("Error fetching cart data:", err);
-            }
-        } else {
-            const savedCart = localStorage.getItem("cartItems");
+        const savedCart = localStorage.getItem("cartItems");
             console.log(savedCart);
             if (savedCart) {
                 setcartItems(JSON.parse(savedCart));
             } else {
                 setcartItems({});
             }
-        }
+        // if (token) {
+        //     try {
+        //         const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
+        //         setcartItems(response.data.cartData);
+        //         localStorage.removeItem("cartItems");
+        //     } catch (err) {
+        //         console.error("Error fetching cart data:", err);
+        //     }
+        // } else {
+        //     const savedCart = localStorage.getItem("cartItems");
+        //     console.log(savedCart);
+        //     if (savedCart) {
+        //         setcartItems(JSON.parse(savedCart));
+        //     } else {
+        //         setcartItems({});
+        //     }
+        // }
     };
     
 
