@@ -4,16 +4,18 @@ import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 
 const LoginPopup = ({ setshowLogin }) => {
-    const { url, settoken , loadCartData} = useContext(StoreContext);
+    const { url, settoken, loadCartData, setloader } = useContext(StoreContext);
     const [currState, setcurrState] = useState("Sign Up");
     const [errorMessage, seterrorMessage] = useState("");
     const [data, setdata] = useState({
         firstName: "",
         lastName: "",
+        username: "",
+        email: "",
         loginIdentifier: "",
         password: "",
         phoneNo: "",
-        userType:"user",
+        userType: "user",
     });
 
     const onChangeHandler = (event) => {
@@ -24,29 +26,43 @@ const LoginPopup = ({ setshowLogin }) => {
 
     const onlogin = async (event) => {
         event.preventDefault();
-
         let newUrl = url;
+        let payload;
+
         if (currState === 'Sign Up') {
-            newUrl += '/api/user/register'
+            newUrl += '/api/user/register';
+            payload = {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                username: data.username,
+                email: data.email,
+                password: data.password,
+                phoneNo: data.phoneNo,
+                userType: data.userType
+            };
         }
         else {
-            newUrl += '/api/user/login'
+            newUrl += '/api/user/login';
+            payload = {
+                loginIdentifier: data.loginIdentifier,
+                password: data.password
+            };
         }
 
         try {
-            const response = await axios.post(newUrl, data);
+            const response = await axios.post(newUrl, payload);
             if (response.data.success) {
-                // localStorage.removeItem("cartItems");
                 localStorage.setItem("token", response.data.token);
-                loadCartData(response.data.token)
+                loadCartData(response.data.token);
                 settoken(response.data.token);
                 setshowLogin(false);
+                setloader(true);
             } else {
                 seterrorMessage(response.data.message);
             }
         } catch (err) {
-            console.error("Login/Register error:", err);
-            seterrorMessage("Something went wrong. Please try again later.");
+            seterrorMessage(err.response?.data?.message || "An error occurred.");
+            console.error(err);
         }
     };
 

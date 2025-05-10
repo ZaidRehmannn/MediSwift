@@ -1,18 +1,19 @@
 import React, { useContext } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 import { IoMenuSharp } from "react-icons/io5";
 
 const Navbar = ({ setshowLogin }) => {
-  const { getTotalCartAmount, token, settoken, page, setpage , setIsOpen , setcartItems , setPageTrans , setMovePage } = useContext(StoreContext);
+  const { getTotalCartAmount, token, settoken, page, setIsOpen , setcartItems , setPageTrans , setMovePage, setloader } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("token");
     settoken("");
     navigate("/");
-    setcartItems({})
+    setcartItems({});
+    setloader(true);
   };
 
   const handleNavigation = (to , name) => {
@@ -26,9 +27,6 @@ const Navbar = ({ setshowLogin }) => {
       navigate(path)
     }, 1000)
   }
-  
-  console.log(page);
-  console.log(token , "nav bar");
 
   return (
     <div className='navbar flex justify-between items-center py-4 px-10 md:px-28 bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40'>
@@ -75,7 +73,6 @@ const Navbar = ({ setshowLogin }) => {
         <p
           onClick={() => handleNavigation('contactus' , 'Contact Us')}
           // to='/contactus'
-          // onClick={() => setpage('Contact Us')}
           className={page === 'Contact Us'
             ? 'pb-[2px] border-b-2 border-green-700 text-green-700 cursor-pointer'
             : 'cursor-pointer hover:text-green-600'}

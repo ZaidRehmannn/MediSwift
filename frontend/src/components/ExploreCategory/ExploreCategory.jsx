@@ -34,10 +34,6 @@ const ExploreCategory = () => {
                     return (
                         <div
                             onClick={() => handleNavigation(`/store?category=${encodeURIComponent(item.category_name)}` , item.category_name)}
-                            // onClick={() => {
-                            //     navigate(`/store?category=${encodeURIComponent(item.category_name)}`)
-                            //     setpage('Store')
-                            // }}
                             key={index}
                             className='explore-category-list-item flex flex-col items-center min-w-20 cursor-pointer'
                         >

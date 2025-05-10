@@ -11,61 +11,61 @@ const StoreContextProvider = (props) => {
     const [medicine_list, setmedicine_list] = useState(undefined);
     const [page, setpage] = useState("");
     const [activePageTrans, setPageTrans] = useState(false);
-    const [movePage, setMovePage] = useState("")
-   
+    const [movePage, setMovePage] = useState("");
+    const [loader, setloader] = useState(false);
+
     const addToCart = async (itemId) => {
         let updatedCart;
-    
+
         setcartItems((prev) => {
             const newCart = {
                 ...prev,
                 [itemId]: prev[itemId] ? prev[itemId] + 1 : 1,
             };
             updatedCart = newCart;
-  
+
             if (!token) {
                 localStorage.setItem('cartItems', JSON.stringify(newCart));
             }
-    
+
             return newCart;
         });
-    
+
         if (token) {
             await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
         }
     };
 
-    
+
     const removeFromCart = async (itemId) => {
-        console.log("removing from cart", itemId);
-    
+
         setcartItems((prev) => {
             const updatedCart = { ...prev };
-    
+
             if (updatedCart[itemId] > 1) {
                 updatedCart[itemId] -= 1;
             } else {
                 delete updatedCart[itemId];
             }
-    
+
             if (!token) {
                 localStorage.setItem('cartItems', JSON.stringify(updatedCart));
             }
-    
+
             return updatedCart;
         });
-    
+
         if (token) {
             await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
         }
     };
-    
+
     const getTotalCartAmount = () => {
         let totalAmount = 0;
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
                 let itemInfo = medicine_list.find((product) => product._id === item);
-                if(itemInfo){
+                if (itemInfo) {
                     totalAmount += itemInfo?.price * cartItems[item];
                 }
             }
@@ -79,33 +79,14 @@ const StoreContextProvider = (props) => {
     };
 
     const loadCartData = async (token) => {
-        console.log(token);
         const savedCart = localStorage.getItem("cartItems");
-            console.log(savedCart);
-            if (savedCart) {
-                setcartItems(JSON.parse(savedCart));
-            } else {
-                setcartItems({});
-            }
-        // if (token) {
-        //     try {
-        //         const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
-        //         setcartItems(response.data.cartData);
-        //         localStorage.removeItem("cartItems");
-        //     } catch (err) {
-        //         console.error("Error fetching cart data:", err);
-        //     }
-        // } else {
-        //     const savedCart = localStorage.getItem("cartItems");
-        //     console.log(savedCart);
-        //     if (savedCart) {
-        //         setcartItems(JSON.parse(savedCart));
-        //     } else {
-        //         setcartItems({});
-        //     }
-        // }
+        if (savedCart) {
+            setcartItems(JSON.parse(savedCart));
+        } else {
+            setcartItems({});
+        }
     };
-    
+
 
     useEffect(() => {
         async function loadData() {
@@ -131,12 +112,14 @@ const StoreContextProvider = (props) => {
         settoken,
         page,
         setpage,
-        isOpen, 
+        isOpen,
         setIsOpen,
-        setPageTrans, 
-        activePageTrans, 
-        movePage, 
-        setMovePage
+        setPageTrans,
+        activePageTrans,
+        movePage,
+        setMovePage,
+        loader,
+        setloader
     }
     return (
         <StoreContext.Provider value={contextValue}>

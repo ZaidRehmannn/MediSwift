@@ -12,7 +12,6 @@ const Cart = ({ setshowLogin }) => {
 
   const checkLogin = () => {
     if (!token) {
-      // setshowLoginError(true);
       setshowLogin(true)
     } else {
       navigate('/order')

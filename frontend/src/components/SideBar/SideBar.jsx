@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/frontend_assets/logo.png';
 import { IoCloseOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';

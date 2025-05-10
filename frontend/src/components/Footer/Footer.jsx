@@ -49,7 +49,7 @@ const Footer = () => {
                 </div>
             </div>
             <hr className='w-full h-[2px] mt-5 mb-2 mx-0 bg-gray-400 border-none' />
-            <p className='footer-copyright text-center'>Copyright 2024 © MediSwift.com - All Right Reserved.</p>
+            <p className='footer-copyright text-center'>Copyright 2025 © MediSwift.com - All Right Reserved.</p>
         </div>
     )
 }

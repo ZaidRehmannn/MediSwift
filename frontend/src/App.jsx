@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
@@ -17,9 +17,12 @@ import { ToastContainer } from 'react-toastify';
 import SideBar from './components/SideBar/SideBar';
 import PreLoader from './components/PreLoader/PreLoader';
 import PageTrans from './components/PageTrans/PageTrans';
+import SigninLoader from './components/SigninLoader/SigninLoader';
+import { StoreContext } from './context/StoreContext';
 
 const App = () => {
   const [showLogin, setshowLogin] = useState(false);
+  const { loader, token } = useContext(StoreContext);
 
   return (
     <ScrollToTop>
@@ -27,6 +30,7 @@ const App = () => {
       <ToastContainer />
       <PageTrans />
       {showLogin ? <LoginPopup setshowLogin={setshowLogin} /> : null}
+      {loader && <SigninLoader title={token ? "Signing in..." : "Logging out..."} />}
       <Navbar setshowLogin={setshowLogin} />
       <SideBar setshowLogin={setshowLogin} />
       <div className='app w-[85%] lg:w-[80%] mx-auto'>

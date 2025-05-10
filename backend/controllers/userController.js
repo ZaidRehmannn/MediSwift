@@ -10,7 +10,6 @@ const createToken = (id) => {
 // login user
 const loginUser = async (req, res) => {
     const { loginIdentifier, password } = req.body;
-    console.log(req.body);
 
     try {
         const user = await userModel.findOne({

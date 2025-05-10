@@ -24,7 +24,6 @@ const Navbar = () => {
         >
           Logout
         </button>
-        {/* <img className='profile w-10 h-10 rounded-full object-cover' src={assets.profile_image} alt="Profile" /> */}
       </div>
     </div>
   )

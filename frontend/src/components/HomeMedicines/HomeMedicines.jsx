@@ -10,7 +10,6 @@ const HomeMedicines = () => {
     const {setPageTrans , setMovePage ,medicine_list } = useContext(StoreContext);
     
     const handleNavigation = (to , name) => {
-        
             setPageTrans(true)
             setMovePage(name)
             setTimeout(() => {
@@ -56,10 +55,6 @@ const HomeMedicines = () => {
             <div className='flex justify-center items-center mt-16'>
                 <button
                     className='p-5 bg-green-600 text-white rounded-xl'
-                    // onClick={() => {
-                    //     navigate('/store?category=All')
-                    //     setpage('Store')
-                    // }}
                     onClick={() => handleNavigation('/store?category=All' , 'Store')}
                     >
                     View More Products
