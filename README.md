@@ -72,6 +72,19 @@ Built with the MERN stack, MediSwift simplifies the traditional pharmacy experie
 
 ---
 
+## 🚀 Live Demo
+
+Explore the live version of MediSwift:
+
+- **Frontend:** [Live Link](https://medi-swift-frontend.vercel.app)
+- **Admin Panel:** [Live Link](https://medi-swift-admin.vercel.app)
+
+> **Note:** Use the following credentials to access the Admin Panel:  
+> - **Email:** admin@gmail.com  
+> - **Password:** admin123
+
+---
+
 ## 🛠️ Installation
 
 ### Prerequisites
