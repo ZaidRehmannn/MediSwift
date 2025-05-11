@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from '../Protected/ProtectedRoute';
 
 const AdminPanel = () => {
-  const url = "http://localhost:4000";
+  const url = import.meta.env.VITE_API_URL;
   return (
     <div className='h-screen overflow-hidden flex flex-col'>
       <ToastContainer />
